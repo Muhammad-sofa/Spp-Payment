@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function () {
+    //ini route khusus operator
+});
+Route::prefix('wali')->middleware(['auth', 'auth.wali'])->group(function () {
+    //ini route khusus wali
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
