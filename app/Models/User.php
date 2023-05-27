@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'akses',
+        'nohp',
+        'mohp_verified_at',
     ];
 
     /**
