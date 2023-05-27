@@ -28,7 +28,8 @@ Route::prefix('wali')->middleware(['auth', 'auth.wali'])->group(function () {
 
 Route::get('logout', function () {
     Auth::logout();
-});
+    return redirect()->route('home');
+})->name('logout');
 
 Route::get('/', function () {
     return view('welcome');
