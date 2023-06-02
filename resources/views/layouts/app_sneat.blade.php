@@ -141,7 +141,7 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
+            <li class="menu-item {{ \Route::is('operator.beranda') ? 'active' : '' }}">
               <a href="{{ route('operator.beranda') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Beranda</div>
@@ -149,7 +149,7 @@
             </li>
 
             <!-- Cards -->
-            <li class="menu-item">
+            <li class="menu-item {{ \Route::is('user.*') ? 'active' : '' }}">
               <a href="{{ route('user.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Data User</div>
