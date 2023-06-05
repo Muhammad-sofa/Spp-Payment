@@ -12,7 +12,7 @@
                     ]) !!}
                     <div class="form-group mt-3">
                          <label for="wali_id">Wali Murid</label>
-                         {!! Form::select('wali_id', $wali, null, ['class' => 'form-control']) !!}
+                         {!! Form::select('wali_id', $wali, null, ['class' => 'form-control select2']) !!}
                          <span class="text-danger">{{ $errors->first('wali_id') }}</span>
                     </div>
                     <div class="form-group mt-3">

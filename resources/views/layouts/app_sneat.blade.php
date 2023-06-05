@@ -375,5 +375,12 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script>
+      $(document).ready(function() {
+        $('.select2').select2();
+      });
+    </script>
   </body>
 </html>
