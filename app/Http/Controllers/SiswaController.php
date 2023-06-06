@@ -88,7 +88,10 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('operator.' . $this->viewShow, [
+            'model' => Model::findOrFail($id),
+            'title' => 'Detail Siswa'
+        ]);
     }
 
     /**

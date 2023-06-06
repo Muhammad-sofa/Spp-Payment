@@ -36,8 +36,12 @@
                                                        'method' => 'DELETE',
                                                        'onsubmit' => 'return confirm("Yakin ingin menghapus data ini ?")',
                                                   ]) !!}
-                                                  <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                                  <a href="{{ route($routePrefix.'.edit', $item->id) }}" class="btn btn-warning btn-sm ml-2 mr-2">
                                                        <i class="fa fa-edit"></i> Edit
+                                                  </a>
+
+                                                  <a href="{{ route($routePrefix.'.show', $item->id) }}" class="btn btn-info btn-sm">
+                                                       <i class="fa fa-edit"></i> Detail
                                                   </a>
                                                        {{-- {!! Form::submit('Hapus', ['class' => 'btn btn-danger btn-sm']) !!} --}}
                                                        <button type="submit" class="btn btn-danger btn-sm">
