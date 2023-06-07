@@ -7,10 +7,10 @@ use \App\Models\User as Model;
 
 class WaliController extends Controller
 {
-    private $viewIndex = 'user_index';
+    private $viewIndex = 'wali_index';
     private $viewCreate = 'user_form';
     private $viewEdit = 'user_form';
-    private $viewShow = 'user_show';
+    private $viewShow = 'wali_show';
     private $routePrefix = 'wali';
     /**
      * Display a listing of the resource.
@@ -19,13 +19,13 @@ class WaliController extends Controller
      */
     public function index()
     {
-          return view('operator.'.$this->viewIndex, [
-               'models' => Model::where('akses', 'wali')
-               ->latest()
-               ->paginate(50),
-               'routePrefix' => $this->routePrefix,
-               'title' => 'Data Wali Murid'
-          ]);
+        return view('operator.'.$this->viewIndex, [
+            'models' => Model::wali()
+            ->latest()
+            ->paginate(50),
+            'routePrefix' => $this->routePrefix,
+            'title' => 'Data Wali Murid'
+        ]);
     }
 
     /**
@@ -76,7 +76,11 @@ class WaliController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = Model::wali()->where('id', $id)->firstOrFail();
+        return view('operator.' . $this->viewShow, [
+            'model' => $model,
+            'title' => 'Detail Data Wali Murid'
+        ]);
     }
 
     /**
