@@ -34,6 +34,16 @@
                                    </tr>
                               </thead>
                          </table>
+                         <h4 class="my-3">Tambah Data Anak</h4>
+                         {!! Form::open(['route' => 'walisiswa.store', 'method' => 'POST']) !!}
+                         {!! Form::hidden('wali_id', $model->id, []) !!}
+                              <div class="form-group">
+                                   <label for="siswa_id">Pilih Data Siswa</label>
+                                        {!! Form::select('siswa_id', $siswa, null, ['class' => 'form-control select2']) !!}
+                                        <span class="text-danger">{{ $errors->first('siswa_id') }}</span>
+                              </div>
+                         {!! Form::submit('SIMPAN', ['class' => 'btn btn-primary my-2']) !!}
+                         {!! Form::close() !!}
                          <h4 class="my-3">DATA ANAK</h4>
                          <table class="table table-light">
                               <thead>
