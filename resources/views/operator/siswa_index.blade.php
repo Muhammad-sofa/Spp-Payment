@@ -26,6 +26,7 @@
                                         <th>Jurusan</th>
                                         <th>Kelas</th>
                                         <th>Angkatan</th>
+                                        <th>Created By</th>
                                         <th>Aksi</th>
                                    </tr>
                               </thead>
@@ -39,6 +40,7 @@
                                              <td>{{ $item->jurusan }}</td>
                                              <td>{{ $item->kelas }}</td>
                                              <td>{{ $item->angkatan }}</td>
+                                             <td>{{ $item->user->name }}</td>
                                              <td>
                                                   {!! Form::open([
                                                        'route' => [$routePrefix .'.destroy', $item->id],
