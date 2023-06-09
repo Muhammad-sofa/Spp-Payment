@@ -31,7 +31,7 @@
                                         <tr>
                                              <td>{{ $loop->iteration }}</td>
                                              <td>{{ $item->nama }}</td>
-                                             <td>{{ $item->jumlah }}</td>
+                                             <td>{{ formatRupiah($item->jumlah) }}</td>
                                              <td>{{ $item->user->name }}</td>
                                              <td>
                                                   {!! Form::open([
