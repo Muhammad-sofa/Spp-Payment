@@ -25,8 +25,18 @@ class StoreBiayaRequest extends FormRequest
     {
         return [
             'nama' => 'required|unique:biayas,nama',
-            'jumlah' => 'required',
-
+            'jumlah' => 'required|numeric',
         ];
+    }
+
+
+    /**
+    * Prepare the data for validation.
+    */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'jumlah' => str_replace('.', '', $this->jumlah),
+        ]);
     }
 }
