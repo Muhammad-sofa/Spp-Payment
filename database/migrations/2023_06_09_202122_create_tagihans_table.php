@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('siswa_id')->index();
             $table->foreignId('user_id')->index();
             $table->integer('angkatan');
+            $table->integer('kelas');
             $table->date('tanggal_tagihan');
             $table->date('tanggal_jatuh_tempo');
             $table->string('nama_biaya');
