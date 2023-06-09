@@ -63,10 +63,10 @@ class BiayaController extends Controller
      */
     public function store(StoreBiayaRequest $request)
     {
-        $requestData = $request->validated();
+        // $requestData = $request->validated();
 
-        $requestData['user_id'] = auth()->user()->id;
-        Model::create($requestData);
+        // $requestData['user_id'] = auth()->user()->id;
+        Model::create($request->validated());
         flash('Data berhasil disimpan');
         return back();
     }
@@ -114,11 +114,11 @@ class BiayaController extends Controller
      */
     public function update(UpdateBiayaRequest $request, $id)
     {
-        $requestData = $request->validated();
+        //$requestData = $request->validated();
         $model = Model::findOrFail($id);
 
-        $requestData['user_id'] = auth()->user()->id;
-        $model->fill($requestData);
+        //$requestData['user_id'] = auth()->user()->id;
+        $model->fill($request->validated());
         $model->save();
         flash('Data berhasil diubah');
         return redirect()->route('biaya.index');
