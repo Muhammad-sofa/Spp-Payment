@@ -10,6 +10,11 @@
                          'method' => $method,
                     ]) !!}
                     <div class="form-group mt-1">
+                         <label for="biaya_id">Biaya Yang Ditagihkan</label>
+                         {!! Form::select('biaya_id', $biaya, null, ['class' => 'form-control', 'multiple' => true]) !!}
+                         <span class="text-danger">{{ $errors->first('biaya_id') }}</span>
+                    </div>
+                    <div class="form-group mt-1">
                          <label for="angkatan">Tagihan Untuk Angkatan</label>
                          {!! Form::select('angkatan', $angkatan, null, ['class' => 'form-control', 'placeholder' => 'Pilih Angkatan']) !!}
                          <span class="text-danger">{{ $errors->first('angkatan') }}</span>
