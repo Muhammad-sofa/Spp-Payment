@@ -14,6 +14,7 @@
                          {!! Form::select('biaya_id[]', $biaya, null, ['class' => 'form-control', 'multiple' => true]) !!}
                          <span class="text-danger">{{ $errors->first('biaya_id') }}</span>
                     </div> --}}
+                    <label for=""></label>
                     @foreach ($biaya as $item)
                     <div class="form-check mt-3">
                          {!! Form::checkbox('biaya_id[]', $item->id, null, [

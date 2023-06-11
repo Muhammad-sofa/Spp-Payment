@@ -66,7 +66,14 @@ class TagihanController extends Controller
      */
     public function store(StoreTagihanRequest $request)
     {
-        //
+        //1. Lakukan validasi
+        //2. Ambil data biaya yang ditagihkan
+        //3. Ambil data siswa yang ditagih berdasarkan kelas atau berdasarkan angkatan
+        //4. Lakukan perulangan berdasarkan data siswa
+        //5. Didalam perulangan, simpan tagihan berdasarkan biaya dan siswa
+        //6. Simpan notifikasi database untuk tagihan
+        //7. Kirim pesan whatsapp
+        //8. Redirect back() dengan pesan sukses
     }
 
     /**
@@ -75,7 +82,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function show(Tagihan $tagihan)
+    public function show(Model $tagihan)
     {
         //
     }
@@ -86,7 +93,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tagihan $tagihan)
+    public function edit(Model $tagihan)
     {
         //
     }
@@ -98,7 +105,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTagihanRequest $request, Tagihan $tagihan)
+    public function update(UpdateTagihanRequest $request, Model $tagihan)
     {
         //
     }
@@ -109,7 +116,7 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tagihan $tagihan)
+    public function destroy(Model $tagihan)
     {
         //
     }
