@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Tagihan as Model;
 use App\Http\Requests\StoreTagihanRequest;
 use App\Http\Requests\UpdateTagihanRequest;
+use App\Models\Tagihan;
+use Carbon\Carbon;
 
 class TagihanController extends Controller
 {
@@ -101,11 +103,25 @@ class TagihanController extends Controller
                     'keterangan' => $requestData['keterangan'],
                     'status' => 'baru'
                 ];
+                $tanggalJatuhTempo = Carbon::parse($requestData['tanggal_jatuh_tempo']);
+                $tanggalTagihan = Carbon::parse($requestData['tanggal_tagihan']);
+                $bulanTagihan = $tanggalTagihan->format('m');
+                $tahunTagihan = $tanggalTagihan->format('Y');
+                $cekTagihan = Model::where('siswa_id', $itemSiswa->id)
+                    ->where('nama_biaya', $itemBiaya->nama)
+                    ->whereMonth('tanggal_tagihan', $bulanTagihan)
+                    ->whereYear('tanggal_tagihan', $tahunTagihan)
+                    ->first();
+                if($cekTagihan == null){
+                    Model::create($dataTagihan);
+                }
                 //print foreach(perulangan)
-                print_r($dataTagihan);
-                echo '<br>';
+                // print_r($dataTagihan);
+                // echo '<br>';
             }
         }
+        flash("Data berhasil disimpan")->success();
+        return back();
     }
 
     /**

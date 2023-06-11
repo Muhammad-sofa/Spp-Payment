@@ -30,8 +30,8 @@
                                    @forelse ($models as $item)
                                         <tr>
                                              <td>{{ $loop->iteration }}</td>
-                                             <td>{{ $item->nama }}</td>
-                                             <td>{{ $item->formatRupiah('jumlah') }}</td>
+                                             <td>{{ $item->nama_biaya }}</td>
+                                             <td>{{ formatRupiah($item->jumlah_biaya )}}</td>
                                              <td>{{ $item->user->name }}</td>
                                              <td>
                                                   {!! Form::open([

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Tagihan extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     /**
      * Get the user that owns the Tagihan
@@ -28,5 +29,22 @@ class Tagihan extends Model
     public function siswa(): BelongsTo
     {
         return $this->belongsTo(Siswa::class);
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        //creating adalah sebelum dibuat
+        static::creating(function ($tagihan) {
+            $tagihan->user_id = auth()->user()->id;
+        });
+
+        static::updating(function ($tagihan) {
+            $tagihan->user_id = auth()->user()->id;
+        });
     }
 }
