@@ -5,34 +5,45 @@
           <div class="card">
                <h5 class="card-header">{{ $title }}</h5>
                <div class="card-body">
-                    <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
-                    {!! Form::open(['route' => $routePrefix . '.index', 'method' => 'GET']) !!}
-                         <div class="input-group">
-                              <input name="q" type="text" class="form-control" placeholder="Cari Data"
-                                   aria-label="cari nama" aria-describedby="button-addon2" value="{{ request('q') }}">
-                              <button class="btn btn-outline-primary" type="submit" id="button-addon2">
-                                   <i class="bx bx-search"></i>
-                              </button>
+                    <div class="row">
+                         <div class="col-md-6">
+                              <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                          </div>
-                    {{ !!Form::close() }}
+                         <div class="col-md-6">
+                              {!! Form::open(['route' => $routePrefix . '.index', 'method' => 'GET']) !!}
+                                   <div class="row">
+                                        <div class="col-md-4 col-sm-12">
+                                             {!! Form::selectMonth('bulan', request('bulan'), ['class' => 'form-control']) !!}
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                             {!! Form::selectRange('tahun', 2022, date('Y') + 1, request('tahun'), ['class' => 'form-control']) !!}
+                                        </div>
+                                        <div class="col">
+                                             <button class="btn btn-primary" type="submit">Tampil</button>
+                                        </div>
+                                   </div>
+                              {!! Form::close() !!}
+                         </div>
+                    </div>
                     <div class="table-responsive">
                          <table class="table table-striped">
                               <thead>
                                    <tr>
                                         <th>No</th>
-                                        <th>Nama Biaya</th>
-                                        <th>Jumlah</th>
-                                        <th>Created By</th>
-                                        <th>Aksi</th>
+                                        <th>NISN</th>
+                                        <th>Nama</th>
+                                        <th>Tanggal Tagihan</th>
+                                        <th>Status</th>
                                    </tr>
                               </thead>
                               <tbody>
                                    @forelse ($models as $item)
                                         <tr>
                                              <td>{{ $loop->iteration }}</td>
-                                             <td>{{ $item->nama_biaya }}</td>
-                                             <td>{{ formatRupiah($item->jumlah_biaya )}}</td>
-                                             <td>{{ $item->user->name }}</td>
+                                             <td>{{ $item->siswa->nisn }}</td>
+                                             <td>{{ $item->siswa->nama }}</td>
+                                             <td>{{ $item->tanggal_tagihan }}</td>
+                                             <td>{{ $item->status }}</td>
                                              <td>
                                                   {!! Form::open([
                                                        'route' => [$routePrefix .'.destroy', $item->id],
