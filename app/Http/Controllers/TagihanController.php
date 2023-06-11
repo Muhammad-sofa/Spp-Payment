@@ -74,6 +74,38 @@ class TagihanController extends Controller
         //6. Simpan notifikasi database untuk tagihan
         //7. Kirim pesan whatsapp
         //8. Redirect back() dengan pesan sukses
+        $requestData = $request->validated();
+        $biayaIdArray = $requestData['biaya_id'];
+
+        $siswa = Siswa::query();
+
+        if ($requestData['kelas'] != ''){
+            $siswa->where('kelas', $requestData['kelas']);
+        }
+        if ($requestData['angkatan'] != ''){
+            $siswa->where('angkatan', $requestData['angkatan']);
+        }
+        $siswa = $siswa->get();
+        foreach ($siswa as $item) {
+            $itemSiswa = $item;
+            $biaya = Biaya::whereIn('id', $biayaIdArray)->get();
+            foreach ($biaya as $itemBiaya) {
+                $dataTagihan = [
+                    'siswa_id' => $itemSiswa->id,
+                    'angkatan' => $requestData['angkatan'],
+                    'kelas' => $requestData['kelas'],
+                    'tanggal_tagihan' => $requestData['tanggal_tagihan'],
+                    'tanggal_jatuh_tempo' => $requestData['tanggal_jatuh_tempo'],
+                    'nama_biaya' => $itemBiaya->nama,
+                    'jumlah_biaya' => $itemBiaya->jumlah,
+                    'keterangan' => $requestData['keterangan'],
+                    'status' => 'baru'
+                ];
+                //print foreach(perulangan)
+                print_r($dataTagihan);
+                echo '<br>';
+            }
+        }
     }
 
     /**
