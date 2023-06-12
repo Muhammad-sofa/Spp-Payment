@@ -132,9 +132,13 @@ class TagihanController extends Controller
      * @param  \App\Models\Tagihan  $tagihan
      * @return \Illuminate\Http\Response
      */
-    public function show(Model $tagihan)
+    public function show(Request $request, $id)
     {
-        //
+        $tagihan = Model::with('siswa')->where('siswa_id', $request->siswa_id)
+        ->whereMonth('tanggal_tagihan', $request->bulan)
+        ->whereYear('tanggal_tagihan', $request->tahun)
+        ->get();
+        dd($tagihan);
     }
 
     /**
