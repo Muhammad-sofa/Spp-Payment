@@ -138,7 +138,6 @@ class TagihanController extends Controller
         ->whereMonth('tanggal_tagihan', $request->bulan)
         ->whereYear('tanggal_tagihan', $request->tahun)
         ->get();
-        dd($tagihan);
     }
 
     /**
