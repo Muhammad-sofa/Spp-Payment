@@ -42,7 +42,7 @@
                                              <td>{{ $loop->iteration }}</td>
                                              <td>{{ $item->siswa->nisn }}</td>
                                              <td>{{ $item->siswa->nama }}</td>
-                                             <td>{{ $item->tanggal_tagihan }}</td>
+                                             <td>{{ $item->tanggal_tagihan->format('d-M-Y')}}</td>
                                              <td>{{ $item->status }}</td>
                                              <td>
                                                   {!! Form::open([
