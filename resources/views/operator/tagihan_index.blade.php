@@ -57,7 +57,7 @@
                                                   </a> --}}
 
                                                   <a href="{{ route($routePrefix.'.show', [
-                                                       $item->siswa_id,
+                                                       $item->id,
                                                        'siswa_id' => $item->siswa_id,
                                                        'bulan' => $item->tanggal_tagihan->format('m'),
                                                        'tahun' => $item->tanggal_tagihan->format('Y'),
