@@ -34,6 +34,7 @@
                                         <th>Nama</th>
                                         <th>Tanggal Tagihan</th>
                                         <th>Status</th>
+                                        <th>Total Tagihan</th>
                                    </tr>
                               </thead>
                               <tbody>
@@ -44,6 +45,7 @@
                                              <td>{{ $item->siswa->nama }}</td>
                                              <td>{{ $item->tanggal_tagihan->format('d-M-Y')}}</td>
                                              <td>{{ $item->status }}</td>
+                                             <td>{{ $item->tagihanDetails->sum('jumlah_biaya') }}</td>
                                              <td>
                                                   {!! Form::open([
                                                        'route' => [$routePrefix .'.destroy', $item->id],
