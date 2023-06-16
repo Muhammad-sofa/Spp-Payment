@@ -28,12 +28,12 @@ class TagihanController extends Controller
     public function index(Request $request)
     {
         if ($request->filled('bulan') && $request->filled('tahun')) {
-            $models = Model::with('user', 'siswa', 'tagihanDetails')->latest()
+            $models = Model::latest()
                 ->whereMonth('tanggal_tagihan', $request->bulan)
                 ->whereYear('tanggal_tagihan', $request->tahun)
                 ->paginate(50);
         }else{
-            $models = Model::with('user', 'siswa')->latest()->paginate(50);
+            $models = Model::latest()->paginate(50);
         }
         return view('operator.'.$this->viewIndex, [
             'models' => $models,
@@ -126,7 +126,7 @@ class TagihanController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $tagihan = Model::with('siswa', 'tagihanDetails', 'user')->findOrFail($id);
+        $tagihan = Model::findOrFail($id);
         $data['tagihan'] = $tagihan;
         $data['siswa'] = $tagihan->siswa;
         $data['periode'] = Carbon::parse($tagihan->tanggal_tagihan)->translatedFormat('F Y');
