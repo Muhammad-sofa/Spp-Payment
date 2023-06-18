@@ -46,21 +46,29 @@
                                    </tr>
                               @endforeach
                          </tbody>
+                         <tfoot>
+                              <tr>
+                                   <td colspan="2">Total Pembayaran</td>
+                                   <td>{{ formatRupiah($tagihan->tagihanDetails->sum('jumlah_biaya')) }}</td>
+                              </tr>
+                         </tfoot>
                     </table>
+                    <h5 class="mt-3">Status Pembayaran : {{ strtoupper($tagihan->status) }}</h5>
                </div>
                <h5 class="card-header">FORM PEMBAYARAN</h5>
                <div class="card-body">
                          {!! Form::model($model, ['route' => 'pembayaran.store', 'method' => 'POST']) !!}
+                         {!! Form::hidden('tagihan_id', $tagihan->id, []) !!}
                <div class="form-group">
                     <label for="tanggal_pembayaran">Tanggal Pembayaran</label>
-                         {!! Form::date('tanggal_pembayaran', $model->tanggal_bayar ?? \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('tanggal_bayar') }}</span>
+                         {!! Form::date('tanggal_pembayaran', $model->tanggal_pembayaran ?? \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('tanggal_pembayaran') }}</span>
                </div>
 
                <div class="form-group mt-3">
-                    <label for="jumlah_bayar">Jumlah Yang Dibayarkan</label>
-                         {!! Form::text('jumlah_bayar', null, ['class' => 'form-control rupiah']) !!}
-                    <span class="text-danger">{{ $errors->first('jumlah_bayar') }}</span>
+                    <label for="jumlah_dibayar">Jumlah Yang Dibayarkan</label>
+                         {!! Form::text('jumlah_dibayar', null, ['class' => 'form-control rupiah']) !!}
+                    <span class="text-danger">{{ $errors->first('jumlah_dibayar') }}</span>
                </div>
                          {!! Form::submit('SIMPAN', ['class' => 'btn btn-primary mt-3']) !!}
                          {!! Form::close() !!}

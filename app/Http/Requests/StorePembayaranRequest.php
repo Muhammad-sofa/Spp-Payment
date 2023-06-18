@@ -13,7 +13,7 @@ class StorePembayaranRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class StorePembayaranRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tanggal_pembayaran' => 'required|date',
+            'jumlah_dibayar' => 'required|numeric',
+            'tagihan_id' => 'required|numeric'
         ];
+    }
+
+    /**
+    * Prepare the data for validation.
+    */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'jumlah_dibayar' => str_replace('.', '', $this->jumlah_dibayar),
+        ]);
     }
 }
