@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tagihan_id')->index();
             $table->foreignId('wali_id')->index();
+            $table->dateTime('tanggal_pembayaran');
             $table->string('status_konfirmasi')->nullable();
             $table->double('jumlah_dibayar');
             $table->string('bukti_bayar')->nullable();
