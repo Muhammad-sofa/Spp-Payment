@@ -27,7 +27,7 @@
 <div class="row mt-3">
      <div class="col-md-5">
           <div class="card">
-               <h5 class="card-header">DATA TAGIHAN {{ $periode }}</h5>
+               <h5 class="card-header pb-1">DATA TAGIHAN {{ strtoupper($periode) }}</h5>
                <div class="card-body">
                     <table class="table table-sm table-bordered">
                          <thead>
@@ -52,6 +52,29 @@
                                    <td>{{ formatRupiah($tagihan->tagihanDetails->sum('jumlah_biaya')) }}</td>
                               </tr>
                          </tfoot>
+                    </table>
+                    <h5 class="card-header pb-1 px-0">DATA PEMBAYARAN</h5>
+                    <table class="table table-striped table-bordered">
+                         <thead>
+                              <tr>
+                                   <th>#</th>
+                                   <th>TANGGAL</th>
+                                   <th>JUMLAH</th>
+                                   <th>METODE</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              @foreach ($tagihan->pembayaran as $item)
+                              <tr>
+                                   <td>
+                                        <a href="" target="blank"><i class="fa fa-print"></i></a>
+                                   </td>
+                                   <td>{{ $item->tanggal_pembayaran->translatedFormat('d/m/Y') }}</td>
+                                   <td>{{ formatRupiah($item->jumlah_dibayar) }}</td>
+                                   <td>{{ $item->metode_pembayaran }}</td>
+                              </tr>
+                              @endforeach
+                         </tbody>
                     </table>
                     <h5 class="mt-3">Status Pembayaran : {{ strtoupper($tagihan->status) }}</h5>
                </div>

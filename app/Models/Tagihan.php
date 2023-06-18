@@ -45,6 +45,16 @@ class Tagihan extends Model
     }
 
     /**
+     * Get all of the pembayaran for the Tagihan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pembayaran(): HasMany
+    {
+        return $this->hasMany(Pembayaran::class);
+    }
+
+    /**
      * The "booted" method of the model.
      *
      * @return void
