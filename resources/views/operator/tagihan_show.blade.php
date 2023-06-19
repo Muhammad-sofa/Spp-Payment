@@ -20,6 +20,7 @@
                               <td>: {{ $siswa->nama }}</td>
                          </tr>
                     </table>
+                         <a href="" class="btn btn-primary btn-sm" target="blank"><i class="fa fa-file"></i> Kartu Tagihan {{ request('tahun') }}</a>
                </div>
           </div>
      </div>
@@ -53,7 +54,14 @@
                               </tr>
                          </tfoot>
                     </table>
-                    <h5 class="card-header pb-1 px-0">DATA PEMBAYARAN</h5>
+               </div>
+               
+          </div>
+     </div>
+     <div class="col-md-7">
+          <div class="card">
+               <h5 class="card-header pb-1">DATA PEMBAYARAN</h5>
+               <div class="card-body">
                     <table class="table table-striped table-bordered">
                          <thead>
                               <tr>
@@ -95,14 +103,6 @@
                </div>
                          {!! Form::submit('SIMPAN', ['class' => 'btn btn-primary mt-3']) !!}
                          {!! Form::close() !!}
-               </div>
-          </div>
-     </div>
-     <div class="col-md-7">
-          <div class="card">
-               <h5 class="card-header">KARTU SPP</h5>
-               <div class="card-body">
-                    Kartu spp
                </div>
           </div>
      </div>
