@@ -136,8 +136,8 @@
               </a>
             </li>
 
-            <li class="menu-item {{ \Route::is('siswa.*') ? 'active' : '' }}">
-              <a href="{{ route('siswa.index') }}" class="menu-link">
+            <li class="menu-item {{ \Route::is('wali.siswa.*') ? 'active' : '' }}">
+              <a href="{{ route('wali.siswa.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Data Siswa</div>
               </a>

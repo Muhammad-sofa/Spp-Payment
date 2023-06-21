@@ -13,6 +13,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\BerandaWaliController;
 use App\Http\Controllers\BerandaOperatorController;
 use App\Http\Controllers\KwitansiPembayaranController;
+use App\Http\Controllers\WaliMuridSiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,9 +42,10 @@ Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function
 
 Route::get('login-wali', [LoginController::class, 'showLoginFormWali'])->name('login.wali');
 
-Route::prefix('wali')->middleware(['auth', 'auth.wali'])->group(function () {
+Route::prefix('walimurid')->middleware(['auth', 'auth.wali'])->name('wali.')->group(function () {
     //ini route khusus wali murid
-    Route::get('beranda', [BerandaWaliController::class, 'index'])->name('wali.beranda');
+    Route::get('beranda', [BerandaWaliController::class, 'index'])->name('beranda');
+    Route::resource('siswa', WaliMuridSiswaController::class);
 });
 
 Route::get('logout', function () {
