@@ -139,7 +139,14 @@
             <li class="menu-item {{ \Route::is('wali.siswa.*') ? 'active' : '' }}">
               <a href="{{ route('wali.siswa.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Data Siswa</div>
+                  <div data-i18n="Basic">Data Siswa</div>
+              </a>
+            </li>
+
+            <li class="menu-item {{ \Route::is('wali.tagihan.*') ? 'active' : '' }}">
+              <a href="{{ route('wali.tagihan.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                  <div data-i18n="Basic">Data Tagihan</div>
               </a>
             </li>
 
