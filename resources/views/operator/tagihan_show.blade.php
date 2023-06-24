@@ -58,11 +58,8 @@
                          </tfoot>
                     </table>
                </div>
-               
           </div>
-     </div>
-     <div class="col-md-7">
-          <div class="card">
+                    <div class="card">
                <h5 class="card-header pb-1">DATA PEMBAYARAN</h5>
                <div class="card-body">
                     <table class="table table-striped table-bordered">
@@ -108,6 +105,9 @@
                          {!! Form::close() !!}
                </div>
           </div>
+     </div>
+     <div class="col-md-7">
+
      </div>
 </div>
 @endsection
