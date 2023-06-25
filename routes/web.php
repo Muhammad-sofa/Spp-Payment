@@ -15,6 +15,7 @@ use App\Http\Controllers\BerandaOperatorController;
 use App\Http\Controllers\KwitansiPembayaranController;
 use App\Http\Controllers\WaliMuridSiswaController;
 use App\Http\Controllers\WaliMuridTagihanController;
+use App\Models\BankSekolah;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ use App\Http\Controllers\WaliMuridTagihanController;
 Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function () {
     //ini route khusus operator
     Route::get('beranda', [BerandaOperatorController::class, 'index'])->name('operator.beranda');
+    Route::resource('banksekolah', BankSekolahController::class);
     Route::resource('user', UserController::class);
     Route::resource('wali', WaliController::class);
     Route::resource('siswa', SiswaController::class);
@@ -48,6 +50,7 @@ Route::prefix('walimurid')->middleware(['auth', 'auth.wali'])->name('wali.')->gr
     Route::get('beranda', [BerandaWaliController::class, 'index'])->name('beranda');
     Route::resource('siswa', WaliMuridSiswaController::class);
     Route::resource('tagihan', WaliMuridTagihanController::class);
+    
 });
 
 Route::get('logout', function () {

@@ -157,6 +157,13 @@
               </a>
             </li>
 
+            <li class="menu-item {{ \Route::is('banksekolah.*') ? 'active' : '' }}">
+              <a href="{{ route('banksekolah.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div data-i18n="Basic">Rekening Sekolah</div>
+              </a>
+            </li>
+
             <li class="menu-item {{ \Route::is('wali.*') ? 'active' : '' }}">
               <a href="{{ route('wali.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>

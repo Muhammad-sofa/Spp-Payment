@@ -14,7 +14,7 @@
                                    <i class="bx bx-search"></i>
                               </button>
                          </div>
-                    {{ !!Form::close() }}
+                    {!! Form::close() !!}
                     <div class="table-responsive">
                          <table class="table table-striped">
                               <thead>
