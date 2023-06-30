@@ -27,7 +27,13 @@
                                              <td>{{ $item->siswa->kelas }}</td>
                                              <td>{{ $item->tanggal_tagihan }}</td>
                                              <td>{{ $item->getStatusTagihanWali() }}</td>
-                                             <td></td>
+                                             <td>
+                                                  @if ($item->status == 'baru' || $item->status == 'angsur')
+                                                      <a href="" class="btn btn-primary">Lakukan Pembayaran</a>
+                                                  @else
+                                                      <a href="" class="btn btn-success">Pembayaran Berhasil</a>
+                                                  @endif
+                                             </td>
                                         </tr>
                                    @empty
                                         <tr>
