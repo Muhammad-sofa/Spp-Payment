@@ -25,11 +25,11 @@
                                              <td>{{ $item->siswa->nama }}</td>
                                              <td>{{ $item->siswa->jurusan }}</td>
                                              <td>{{ $item->siswa->kelas }}</td>
-                                             <td>{{ $item->tanggal_tagihan }}</td>
+                                             <td>{{ $item->tanggal_tagihan->translatedFormat('F Y') }}</td>
                                              <td>{{ $item->getStatusTagihanWali() }}</td>
                                              <td>
                                                   @if ($item->status == 'baru' || $item->status == 'angsur')
-                                                      <a href="" class="btn btn-primary">Lakukan Pembayaran</a>
+                                                      <a href="{{ route('wali.tagihan.show', $item->id) }}" class="btn btn-primary">Lakukan Pembayaran</a>
                                                   @else
                                                       <a href="" class="btn btn-success">Pembayaran Berhasil</a>
                                                   @endif
