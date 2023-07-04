@@ -51,6 +51,12 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('sneat') }}/assets/js/config.js"></script>
     <link rel="stylesheet" href="{{ asset('font/css/all.min.css') }}">
+    <style>
+      .table-dark {
+        color: white !important,
+        background-color: #343a40 !important;
+      }
+    </style>
   </head>
 
   <body>
