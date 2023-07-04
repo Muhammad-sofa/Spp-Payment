@@ -17,6 +17,9 @@ class WaliMuridPembayaranController extends Controller
         $data['method'] = 'POST';
         $data['route'] = 'wali.pembayaran.store';
         $data['listBank'] = BankSekolah::pluck('nama_bank', 'id');
+        if ($request->bank_sekolah_id != ''){
+            $data['bankYangDipilih'] = BankSekolah::findOrFail($request->bank_sekolah_id);
+        }
         return view('wali.pembayaran_form', $data);
     }
 }
