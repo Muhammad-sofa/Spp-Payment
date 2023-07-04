@@ -115,7 +115,10 @@
                                              </tr>
                                         </tbody>
                                    </table>
-                                   <a href="" class="btn btn-primary btn-sm mt-3">Konfirmasi Pembayaran</a>
+                                   <a href="{{ route('wali.pembayaran.create' , [
+                                        'tagihan_id' => $tagihan->id,
+                                        'bank_sekolah_id' => $itemBank->id,
+                                   ]) }}" class="btn btn-primary btn-sm mt-3">Konfirmasi Pembayaran</a>
                               </div>
                          </div>
                          @endforeach
