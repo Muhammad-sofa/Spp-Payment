@@ -375,5 +375,6 @@
         $('.select2').select2();
       });
     </script>
+    @yield('js')
   </body>
 </html>
