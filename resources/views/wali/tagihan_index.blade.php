@@ -29,9 +29,9 @@
                                              <td>{{ $item->getStatusTagihanWali() }}</td>
                                              <td>
                                                   @if ($item->status == 'baru' || $item->status == 'angsur')
-                                                      <a href="{{ route('wali.tagihan.show', $item->id) }}" class="btn btn-primary">Lakukan Pembayaran</a>
+                                                      <a href="{{ route('wali.tagihan.show', $item->id) }}" class="btn btn-sm btn-primary">Lakukan Pembayaran</a>
                                                   @else
-                                                      <a href="" class="btn btn-success">Pembayaran Berhasil</a>
+                                                      <a href="" class="btn btn-sm btn-success">Pembayaran Berhasil</a>
                                                   @endif
                                              </td>
                                         </tr>

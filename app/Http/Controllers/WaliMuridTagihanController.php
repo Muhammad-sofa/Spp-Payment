@@ -11,15 +11,13 @@ class WaliMuridTagihanController extends Controller
 {
     public function index()
     {
-        $siswaId = Auth::user()->getAllSiswaId();
-        $data['tagihan'] = Tagihan::whereIn('siswa_id', $siswaId)->get();
+        $data['tagihan'] = Tagihan::waliSiswa()->get();
         return view('wali.tagihan_index', $data);
     }
 
     public function show($id)
     {
-        $siswaId = Auth::user()->getAllSiswaId();
-        $tagihan = Tagihan::whereIn('siswa_id', $siswaId)->findOrFail($id);
+        $tagihan = Tagihan::waliSiswa()->findOrFail($id);
         $data['bankSekolah'] = BankSekolah::all();
         $data['tagihan'] = $tagihan;
         $data['siswa'] = $tagihan->siswa;

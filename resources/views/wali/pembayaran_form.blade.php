@@ -27,7 +27,7 @@
                     </div>
 
                     @if (request('bank_sekolah_id') != '')
-                        <div class="alert alert-primary mt-3" role="alert">
+                        <div class="alert alert-dark mt-3" role="alert">
                             <table width="100%">
                                 <tbody>
                                     <tr>
