@@ -57,18 +57,19 @@
         background-color: #343a40 !important;
       }
       .informasi-pengirim {
-        background-color: #d7e2e9 !important;
         padding: 10px;
       }
 
       .informasi-bank-tujuan {
-        background-color: #d7e2e9 !important;
         padding: 10px;
       }
 
       .informasi-pembayaran {
-        background-color: #d7e2e9 !important;
         padding: 10px;
+      }
+
+      .divider-text {
+        font-weight: bold;
       }
     </style>
   </head>

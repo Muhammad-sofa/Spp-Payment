@@ -16,7 +16,10 @@
             <h5 class="card-header">KONFIRMASI PEMBAYARAN</h5>
             <div class="card-body">
                 {!! Form::model($model, ['route' => $route, 'method' => $method]) !!}
-                <h6 class="m-0 p-0"><i class="fa fa-info-circle"></i> INFORMASI REKENING PENGIRIM</h6>
+
+                <div class="divider text">
+                    <div class="divider-text"><i class="fa fa-info-circle"></i> INFORMASI REKENING PENGIRIM</div>
+                </div>
 
                 <div class="informasi-pengirim">
                     <div class="alert alert-dark" role="alert">
@@ -39,11 +42,19 @@
                         {!! Form::text('no_rekening_bank_pengirim', null, ['class' => 'form-control']) !!}
                         <span class="text-danger">{{ $errors->first('no_rekening_bank_pengirim') }}</span>
                     </div>
+                    <div class="form-check mt-3">
+                        {!! Form::checkbox('simpan_data_rekening', 1, true, ['class' => 'form-check-input', 'id' => 'defaultCheck3']) !!}
+                        <label class="form-check-label" for="defaultCheck3">
+                            Simpan Data
+                        </label>
+                    </div>
                 </div>
 
-                <h6 class="m-0 p-0 mt-4 mb-0 pb-0">
-                    <i class="fa fa-info-circle"></i> INFORMASI REKENING TUJUAN
-                </h6>
+                <div class="divider text">
+                    <div class="divider-text">
+                        <i class="fa fa-info-circle"></i> INFORMASI REKENING TUJUAN
+                    </div>
+                </div>
 
                 <div class="informasi-bank-tujuan">
                     <div class="form-group mt-0">
@@ -76,9 +87,11 @@
                     </div>
                     @endif
                 </div>
-                <h6 class="m-0 p-0 mt-4 mb-0 pb-0">
-                    <i class="fa fa-info-circle"></i> INFORMASI PEMBAYARAN
-                </h6>
+                <div class="divider text">
+                    <div class="divider-text">
+                        <i class="fa fa-info-circle"></i> INFORMASI PEMBAYARAN
+                    </div>
+                </div>
                 <div class="informasi-pembayaran">
                     <div class="form-group mt-0">
                         <label for="tanggal_bayar">Tanggal Bayar</label>
