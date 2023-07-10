@@ -1,7 +1,23 @@
 @extends('layouts.app_sneat_wali')
 @section('js')
 <script>
+    $(function(){
+        $("#checkboxtoggle").click(function() {
+            if ($(this).is(":checked")) {
+                $("#form_bank_pengirim").fadeIn();
+            } else{
+                $("#form_bank_pengirim").fadeOut();
+            }
+        })
+    })
     $(document).ready(function() {
+            @if (count($listWaliBank) >= 1)
+                $("#form_bank_pengirim").hide();
+            @else
+            //buat baru atau baru pertama bayar
+                $("#form_bank_pengirim").show();
+            @endif
+
             $("#pilih_bank").change(function(e) {
                 var bankId = $(this).find(":selected").val();
                 window.location.href = "{!! $url !!}&bank_sekolah_id=" + bankId;
@@ -21,10 +37,30 @@
                     <div class="divider-text"><i class="fa fa-info-circle"></i> INFORMASI REKENING PENGIRIM</div>
                 </div>
 
-                <div class="informasi-pengirim">
-                    <div class="alert alert-dark" role="alert">
-                        Informasi ini dibutuhkan agar operator sekolah dapat memverifikasi pembayaran yang dilakukan oleh wali murid melalui bank.
+                @if(count($listWaliBank) >= 1)
+                {{-- //Sudah pernah bayar --}}
+                    <div class="form-group">
+                        <label for="bank_id_pengirim">Pilih Bank Pengirim</label>
+                        {!! Form::select('bank_id_pengirim', $listWaliBank, null, ['class' => 'form-control select2',
+                        'placeholder' => 'Pilih Nomor Rekening Pengirim']) !!}
+                        <span class="text-danger">{{ $errors->first('bank_id_pengirim') }}</span>
                     </div>
+
+                    <div class="form-check mt-3">
+                        {!! Form::checkbox('bank_pengirim_baru', 1, false, ['class' => 'form-check-input', 'id' =>
+                        'checkboxtoggle']) !!}
+                        <label class="form-check-label" for="checkboxtoggle">
+                            Buat Baru Rekening
+                        </label>
+                    </div>
+                @endif
+
+                <div class="informasi-pengirim" id="form_bank_pengirim">
+                    <div class="alert alert-dark" role="alert">
+                        Informasi ini dibutuhkan agar operator sekolah dapat memverifikasi pembayaran yang dilakukan
+                        oleh wali murid melalui bank.
+                    </div>
+
                     <div class="form-group">
                         <label for="nama_bank_pengirim">Nama Bank Pengirim</label>
                         {!! Form::select('bank_id', $listBank, null, ['class' => 'form-control select2']) !!}
@@ -43,7 +79,8 @@
                         <span class="text-danger">{{ $errors->first('no_rekening_bank_pengirim') }}</span>
                     </div>
                     <div class="form-check mt-3">
-                        {!! Form::checkbox('simpan_data_rekening', 1, true, ['class' => 'form-check-input', 'id' => 'defaultCheck3']) !!}
+                        {!! Form::checkbox('simpan_data_rekening', 1, true, ['class' => 'form-check-input', 'id' =>
+                        'defaultCheck3']) !!}
                         <label class="form-check-label" for="defaultCheck3">
                             Simpan Data
                         </label>
