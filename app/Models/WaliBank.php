@@ -10,6 +10,7 @@ class WaliBank extends Model
 {
     use HasFactory;
     protected $append = ['nama_bank_full'];
+    protected $guarded = [];
 
     protected function namaBankFull(): Attribute
     {
