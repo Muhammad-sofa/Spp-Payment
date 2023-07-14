@@ -6,9 +6,12 @@ use App\Models\Bank;
 use App\Models\Tagihan;
 use App\Models\Pembayaran;
 use App\Models\BankSekolah;
+use App\Models\User;
 use App\Models\WaliBank;
+use App\Notifications\PembayaranNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Notification;
 
 class WaliMuridPembayaranController extends Controller
 {
@@ -62,6 +65,29 @@ class WaliMuridPembayaranController extends Controller
             //ambil data walibank dari database
             $waliBankId = $request->wali_bank_id;
             $waliBank = WaliBank::findOrFail($waliBankId);
-        }    
+        }
+        $request->validate([
+            'tanggal_bayar' => 'required',
+            'jumlah_dibayar' =>'required',
+            'bukti_bayar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+        ]);
+        $buktiBayar = $request->file('bukti_bayar')->store('public');
+        $dataPembayaran = [
+            'bank_sekolah_id' => $request->bank_sekolah_id,
+            'wali_bank_id' => $waliBank->id,
+            'tagihan_id' => $request->tagihan_id,
+            'wali_id' => auth()->user()->id,
+            'tanggal_bayar' => $request->tanggal_bayar,
+            'status_konfirmasi' => 'belum',
+            'jumlah_dibayar' => str_replace('.', '', $request->jumlah_dibayar),
+            'bukti_bayar' => $buktiBayar,
+            'metode_pembayaran' => 'transfer',
+            'user_id' => 0,
+        ];
+        $pembayaran = Pembayaran::create($dataPembayaran);
+        $userOperator = User::where('akses', 'operator')->get();
+        Notification::send($userOperator, new PembayaranNotification($pembayaran));
+        flash('Pembayaran berhasil disimpan dan akan segera dikonfirmasi oleh operator')->success();
+        return back();    
     }
 }
