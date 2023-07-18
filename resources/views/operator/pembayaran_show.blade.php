@@ -116,7 +116,7 @@
                                    <tr>
                                         <td>Bukti Pembayaran</td>
                                         <td>: 
-                                             <a href="{{ \Storage::url($model->bukti_bayar) }}" target="_blank">
+                                             <a href="javascript:void[0]" onclick="popupCenter({url: '{{ \Storage::url($model->bukti_bayar) }}', title: 'Bukti Pembayaran', w: 900, h: 500});">
                                                   Lihat Bukti Bayar
                                              </a>
                                         </td>
