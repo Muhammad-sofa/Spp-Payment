@@ -61,6 +61,7 @@ class PembayaranNotification extends Notification
             'pembayaran_id' => $this->pembayaran->id,
             'title' => 'Pembayaran Tagihan',
             'messages' => $this->pembayaran->wali->name. 'Melakukan pembayaran tagihan.',
+            'url' => route('pembayaran.show', $this->pembayaran->id),
         ];
     }
 }

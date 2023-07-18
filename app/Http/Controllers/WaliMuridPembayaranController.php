@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Notification;
 use App\Models\Bank;
+use App\Models\User;
 use App\Models\Tagihan;
+use App\Models\WaliBank;
 use App\Models\Pembayaran;
 use App\Models\BankSekolah;
-use App\Models\User;
-use App\Models\WaliBank;
-use App\Notifications\PembayaranNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Notification;
+use App\Notifications\PembayaranNotification;
 
 class WaliMuridPembayaranController extends Controller
 {
@@ -102,9 +103,17 @@ class WaliMuridPembayaranController extends Controller
             'metode_pembayaran' => 'transfer',
             'user_id' => 0,
         ];
-        $pembayaran = Pembayaran::create($dataPembayaran);
-        $userOperator = User::where('akses', 'operator')->get();
-        Notification::send($userOperator, new PembayaranNotification($pembayaran));
+        DB::beginTransaction(); //transaksi database dimulai
+        try {
+            $pembayaran = Pembayaran::create($dataPembayaran);
+            $userOperator = User::where('akses', 'operator')->get();
+            Notification::send($userOperator, new PembayaranNotification($pembayaran));
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback(); //batalkan semua transaksi dan data buat baru dibatalkan
+            flash('Gagal menyimpan data pembayaran, ' + $th->getMessage())->error();
+            return back();
+        }
         flash('Pembayaran berhasil disimpan dan akan segera dikonfirmasi oleh operator')->success();
         return back();    
     }

@@ -57,4 +57,24 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(User::class, 'wali_id');
     }
+
+    /**
+     * Get the bankSekolah that owns the Pembayaran
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function bankSekolah(): BelongsTo
+    {
+        return $this->belongsTo(BankSekolah::class);
+    }
+
+    /**
+     * Get the waliBank that owns the Pembayaran
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function waliBank(): BelongsTo
+    {
+        return $this->belongsTo(WaliBank::class);
+    }
 }

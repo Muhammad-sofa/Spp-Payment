@@ -60,7 +60,9 @@ class PembayaranController extends Controller
      */
     public function show(Pembayaran $pembayaran)
     {
-        //
+        return view('operator.pembayaran_show', [
+            'model' => $pembayaran
+        ]);
     }
 
     /**
