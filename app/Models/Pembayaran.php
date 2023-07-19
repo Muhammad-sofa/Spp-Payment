@@ -10,7 +10,8 @@ class Pembayaran extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $dates = ['tanggal_pembayaran'];
+    protected $dates = ['tanggal_pembayaran, tanggal_konfirmasi'];
+    protected $with = ['user', 'tagihan'];
     /**
      * Get the tagihan that owns the Pembayaran
      *

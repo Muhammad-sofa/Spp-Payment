@@ -103,7 +103,7 @@
                                    </tr>
                                    <tr>
                                         <td>Tanggal Pembayaran</td>
-                                        <td>: {{ $model->tanggal_bayar }}</td>
+                                        <td>: {{ optional($model->tanggal_bayar)->translatedFormat('d F Y H:i') }}</td>
                                    </tr>
                                    <tr>
                                         <td>Jumlah Total Tagihan</td>
@@ -129,11 +129,30 @@
                                         <td>Status Pembayaran</td>
                                         <td>: {{ $model->tagihan->getStatusTagihanWali() }}</td>
                                    </tr>
+                                   <tr>
+                                        <td>Tanggal Konfirmasi</td>
+                                        <td>: {{ optional($model->tanggal_konfirmasi)->translatedFormat('d F Y H:i') }}</td>
+                                   </tr>
                               </thead>
                          </table>
-                         <a href="" class="btn btn-primary mt-3">
-                              Konfirmasi Pembayaran
-                         </a>
+
+                         @if ($model->tanggal_konfirmasi == null)
+                              {!! Form::open([
+                                   'route' => $route, 
+                                   'method' => 'PUT',
+                                   'onsubmit' => 'return confirm("Apakah anda yakin ?")'
+                              ]) !!}
+
+                              {!! Form::hidden('pembayaran_id', $model->id, []) !!}
+                              {!! Form::submit('Konfirmasi Pembayaran', ['class' => 'btn btn-primary mt-3']) !!}
+                              {!! Form::close() !!}
+
+                         @else
+                         <div class="alert alert-primary" role="alert">
+                              <h3>Tagihan Sudah Lunas</h3>
+                         </div>
+                         @endif
+
                     </div>
                </div>
           </div>
