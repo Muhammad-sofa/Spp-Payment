@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +13,14 @@ class Pembayaran extends Model
     protected $guarded = [];
     protected $dates = ['tanggal_pembayaran, tanggal_konfirmasi'];
     protected $with = ['user', 'tagihan'];
+    protected $append = ['status_konfirmasi'];
+
+    protected function statusKonfirmasi(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => ($this->tanggal_konfirmasi == null) ? 'Belum Dikonfirmasi' : 'Sudah Dikonfirmasi',
+        );
+    }
     /**
      * Get the tagihan that owns the Pembayaran
      *
