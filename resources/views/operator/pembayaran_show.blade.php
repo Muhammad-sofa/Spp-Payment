@@ -21,7 +21,7 @@
                                    </tr>
                                    <tr>
                                         <td>Item Tagihan</td>
-                                        <td>:
+                                        <td>
                                              <table class="table table-sm">
                                                   <thead>
                                                        <th>No</th>
@@ -32,7 +32,7 @@
                                                        @foreach ($model->tagihan->tagihanDetails as $item)
                                                             <tr>
                                                                  <td>{{ $loop->iteration }}</td>
-                                                                 <td>{{ $item->biaya->nama_biaya }}</td>
+                                                                 <td>{{ $item->nama_biaya }}</td>
                                                                  <td>{{ formatRupiah($item->jumlah_biaya) }}</td>
                                                             </tr>
                                                        @endforeach
@@ -59,39 +59,44 @@
                                         <td>: {{ $model->wali->name }}</td>
                                    </tr>
                                    <tr>
-                                        <td colspan="2" class="bg-secondary text-white fw-bold">
+                                   @if ($model->metode_pembayaran != "manual")
+                                        <tr>
+                                             <td colspan="2" class="bg-secondary text-white fw-bold">
                                              INFORMASI BANK PENGIRIM
-                                        </td>
+                                             </td>
+                                        </tr>
+                                        <tr>
+                                             <td>Bank Pengirim</td>
+                                             <td>: {{ $model->waliBank->nama_bank }}</td>
+                                        </tr>
+                                        <tr>
+                                             <td>Nomor Rekening</td>
+                                             <td>: {{ $model->waliBank->nomor_rekening }}</td>
+                                        </tr>
+                                        <tr>
+                                             <td>Pemilik Rekening</td>
+                                             <td>: {{ $model->waliBank->nama_rekening }}</td>
+                                        </tr>
+                                        <tr>
+                                             <td colspan="2" class="bg-secondary text-white fw-bold">
+                                                  INFORMASI BANK TUJUAN TRANSFER
+                                             </td>
+                                        </tr>
+                                        <tr>
+                                             <td>Bank Tujuan Transfer</td>
+                                             <td>{{ $model->bankSekolah->nama_bank }}</td>
+                                        </tr>
+                                        <tr>
+                                             <td>Nomor Rekening</td>
+                                             <td>: {{ $model->bankSekolah->nomor_rekening }}</td>
+                                        </tr>
+                                        <tr>
+                                             <td>Atas Nama</td>
+                                             <td>: {{ $model->bankSekolah->nama_rekening }}</td>
+                                        </tr>
+                                   @endif
                                    </tr>
-                                   <tr>
-                                        <td>Bank Pengirim</td>
-                                        <td>: {{ $model->waliBank->nama_bank }}</td>
-                                   </tr>
-                                   <tr>
-                                        <td>Nomor Rekening</td>
-                                        <td>: {{ $model->waliBank->nomor_rekening }}</td>
-                                   </tr>
-                                   <tr>
-                                        <td>Pemilik Rekening</td>
-                                        <td>: {{ $model->waliBank->nama_rekening }}</td>
-                                   </tr>
-                                   <tr>
-                                        <td colspan="2" class="bg-secondary text-white fw-bold">
-                                             INFORMASI BANK TUJUAN TRANSFER
-                                        </td>
-                                   </tr>
-                                   <tr>
-                                        <td>Bank Tujuan Transfer</td>
-                                        <td>{{ $model->bankSekolah->nama_bank }}</td>
-                                   </tr>
-                                   <tr>
-                                        <td>Nomor Rekening</td>
-                                        <td>: {{ $model->bankSekolah->nomor_rekening }}</td>
-                                   </tr>
-                                   <tr>
-                                        <td>Atas Nama</td>
-                                        <td>: {{ $model->bankSekolah->nama_rekening }}</td>
-                                   </tr>
+                                   
                                    <tr>
                                         <td colspan="2" class="bg-secondry text-white fw-bold">
                                              INFORMASI PEMBAYARAN
@@ -102,7 +107,7 @@
                                         <td>: {{ $model->metode_pembayaran }}</td>
                                    </tr>
                                    <tr>
-                                        <td>Tanggal Pembayaran</td>
+                                        <td>Tanggal Bayar</td>
                                         <td>: {{ optional($model->tanggal_bayar)->translatedFormat('d F Y H:i') }}</td>
                                    </tr>
                                    <tr>

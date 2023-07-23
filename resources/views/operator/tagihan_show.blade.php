@@ -77,7 +77,7 @@
                                    <td>
                                         <a href="{{ route('kwitansipembayaran.show', $item->id) }}" target="blank"><i class="fa fa-print"></i></a>
                                    </td>
-                                   <td>{{ $item->tanggal_pembayaran->translatedFormat('d/m/Y') }}</td>
+                                   <td>{{ optional($item->tanggal_bayar)->translatedFormat('d/m/Y') }}</td>
                                    <td>{{ formatRupiah($item->jumlah_dibayar) }}</td>
                                    <td>{{ $item->metode_pembayaran }}</td>
                               </tr>
@@ -91,9 +91,9 @@
                          {!! Form::model($model, ['route' => 'pembayaran.store', 'method' => 'POST']) !!}
                          {!! Form::hidden('tagihan_id', $tagihan->id, []) !!}
                <div class="form-group">
-                    <label for="tanggal_pembayaran">Tanggal Pembayaran</label>
-                         {!! Form::date('tanggal_pembayaran', $model->tanggal_pembayaran ?? \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
-                    <span class="text-danger">{{ $errors->first('tanggal_pembayaran') }}</span>
+                    <label for="tanggal_bayar">tanggal_bayar</label>
+                         {!! Form::date('tanggal_bayar', $model->tanggal_bayar ?? \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                    <span class="text-danger">{{ $errors->first('tanggal_bayar') }}</span>
                </div>
 
                <div class="form-group mt-3">

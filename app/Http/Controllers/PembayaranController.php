@@ -17,7 +17,9 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        //
+        $models = Pembayaran::latest()->orderBy('tanggal_konfirmasi', 'desc')->paginate(50);
+        $data['models'] = $models;
+        return view('operator.pembayaran_index', $data);
     }
 
     /**
@@ -43,6 +45,7 @@ class PembayaranController extends Controller
         $requestData['tanggal_konfirmasi'] = now();
         $requestData['metode_pembayaran'] = 'manual';
         $tagihan = Tagihan::findOrFail($requestData['tagihan_id']);
+        $requestData['wali_id'] = $tagihan->siswa->wali_id ?? 0;
         if($requestData['jumlah_dibayar'] >= $tagihan->tagihanDetails->sum('jumlah_biaya')){
             $tagihan->status = 'lunas';
         }else{

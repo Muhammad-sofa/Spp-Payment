@@ -24,7 +24,7 @@ class StorePembayaranRequest extends FormRequest
     public function rules()
     {
         return [
-            'tanggal_pembayaran' => 'required|date',
+            'tanggal_bayar' => 'required|date',
             'jumlah_dibayar' => 'required|numeric',
             'tagihan_id' => 'required|numeric'
         ];

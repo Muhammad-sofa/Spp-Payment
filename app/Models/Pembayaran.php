@@ -11,7 +11,7 @@ class Pembayaran extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $dates = ['tanggal_pembayaran, tanggal_konfirmasi'];
+    protected $dates = ['tanggal_bayar, tanggal_konfirmasi'];
     protected $with = ['user', 'tagihan'];
     protected $append = ['status_konfirmasi'];
 

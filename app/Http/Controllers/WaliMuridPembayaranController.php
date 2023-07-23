@@ -76,7 +76,7 @@ class WaliMuridPembayaranController extends Controller
 
         $validasiPembayaran = Pembayaran::where('jumlah_dibayar', $jumlahDibayar)
             ->where('tagihan_id', $request->tagihan_id)
-            ->where('status_konfirmasi', 'belum')
+            //->where('status_konfirmasi', 'belum')
             ->first();
         if ($validasiPembayaran != null) {
             flash('Data pembayaran ini sudah ada dan akan dikonfirmasi oleh operator');
